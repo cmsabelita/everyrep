@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | EveryRep</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // This page is served at any depth, so links resolve from the site root: /everyrep/ on GitHub Pages, / on a domain.
+    var base = location.pathname.indexOf("/everyrep/") === 0 ? "/everyrep/" : "/";
+    // GitHub Pages has no rewrites: send shared program links (/p/CODE) to the share page.
+    var share = location.pathname.slice(base.length).match(/^p\/([A-Za-z0-9]{8})\/?$/);
+    if (share) location.replace(base + "p/?code=" + share[1]);
+    document.write('<base href="' + base + '">');
+  </script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="32" height="32">EveryRep</a>
+    </div>
+  </header>
+  <main class="wrap narrow hero">
+    <h1>Page not found</h1>
+    <p class="lede">That page isn't here. Try the home page.</p>
+    <a class="button" href="./">Go to EveryRep</a>
+  </main>
+</body>
+</html>

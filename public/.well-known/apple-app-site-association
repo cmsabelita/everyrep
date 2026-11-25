@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["YA4ZD8XDAU.io.everyrep.app"],
+        "components": [{ "/": "/p/*", "comment": "Train together: shared program links" }]
+      }
+    ]
+  }
+}

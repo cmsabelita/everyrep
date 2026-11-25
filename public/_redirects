@@ -1,0 +1,2 @@
+# Cloudflare Pages / Netlify format. Shared program links all serve one page that reads the code from the path.
+/p/*  /p/index.html  200

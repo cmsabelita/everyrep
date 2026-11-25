@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Friend's Program | EveryRep</title>
+  <meta name="description" content="Open your friend's training program in EveryRep and follow the same plan.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Train with me on EveryRep">
+  <meta property="og:description" content="Open my program in EveryRep and follow the same plan this week.">
+  <meta property="og:image" content="https://everyrep.app/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">EveryRep</a>
+    </div>
+  </header>
+
+  <main class="wrap narrow hero">
+    <h1>Your friend shared a program</h1>
+    <div id="found" hidden>
+      <p class="lede">Open it in EveryRep to preview it, then train the same plan.</p>
+      <p><span class="code" id="code"></span></p>
+      <div class="cta-row">
+        <a class="button" id="open" href="../">Open in EveryRep</a>
+        <a class="button secondary" href="TODO_BETA_LINK">Get EveryRep</a>
+      </div>
+      <p class="note">Already in the app? Open Train and tap Scan a friend's code.</p>
+    </div>
+    <div id="missing" hidden>
+      <p class="lede">This link doesn't have a program code. Ask your friend to show the code again.</p>
+      <a class="button secondary" href="../train-with-a-friend/">How Train together works</a>
+    </div>
+  </main>
+
+  <script>
+    // Same rule as ProgramShareLink.code(in:) in the app: /p/ plus 8 letters or digits. GitHub Pages arrives as
+    // /p/?code=CODE (from 404.html).
+    var match = location.pathname.match(/\/p\/([A-Za-z0-9]{8})\/?$/) ||
+      (new URLSearchParams(location.search).get("code") || "").match(/^([A-Za-z0-9]{8})$/);
+    if (match) {
+      var code = match[1].toUpperCase();
+      document.getElementById("code").textContent = code;
+      document.getElementById("open").href = "everyrep://program/" + code;
+      document.getElementById("found").hidden = false;
+    } else {
+      document.getElementById("missing").hidden = false;
+    }
+  </script>
+</body>
+</html>
