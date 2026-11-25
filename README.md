@@ -23,19 +23,19 @@ The app itself lives in `../everyrep-mobile`; App Store metadata stays there in 
 
 ## Before publishing
 
-Run `python3 scripts/check.py`. It lists every `TODO` still in `public/`:
+Run `python3 scripts/check.py` (JSON-LD and AASA parse, no `TODO` in `public/`). Filled on 2026-11-25:
 
-- `TODO_CONTACT_EMAIL`: privacy, terms, support.
-- `TODO_PROVIDER`, `TODO_RETENTION`: the AI provider behind the server's `AI_PROVIDER` (Gemini or Claude) and how long it
-  keeps inputs. Gemini's free API tier may use inputs to improve Google's models; use a paid tier or say so.
-- The 30-day shared-program expiry on the privacy page must be built on the server first.
-- `TODO_BETA_LINK`: the public TestFlight link, then the App Store link after launch.
-- `TODO_APP_ID`: uncomment the Smart App Banner in `index.html`.
-- `TODO(screenshot)`: one real screenshot per landing page (frames 1, 2 and 6 from the marketing kit). Swap
-  `assets/og.png` for frame 1 once it exists.
+- Contact: `cmsabelita@gmail.com`.
+- AI provider: Google, Gemini API (`AI_PROVIDER=gemini` in `../everypeso-api/.env`). The privacy page states Google's
+  **paid** terms: requests kept up to 55 days for abuse monitoring, not used for training. That is only true while the
+  Gemini key's Cloud project has billing on; on the free tier Google may use inputs to improve its products.
+- Shared programs: the link stops working after 30 days (`SHARE_LIFETIME_MS` in the server). The server deletes an
+  expired file only when someone asks for it, so the page doesn't claim deletion.
+- "Join the beta" buttons say "Coming soon to iPhone" until the TestFlight public link exists.
 
-Privacy and terms are what App Review needs first. To ship them before the rest, fill the email and provider TODOs and
-publish; the check will still list the screenshot and beta-link TODOs.
+Still to add when they exist: the TestFlight link (buttons), the App Store id (`<meta name="apple-itunes-app"
+content="app-id=…">` in `index.html`), and one screenshot per landing page (frames 1, 2 and 6 of the marketing kit;
+frame 1 also replaces `assets/og.png`).
 
 ## Deploy: GitHub Pages (now)
 
