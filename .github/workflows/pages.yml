@@ -15,16 +15,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Two jobs: deploying in the same job as the upload failed to find the artifact.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      # v3, not v4: v4 leaves out dotfiles, which would drop public/.well-known/.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
       - id: deployment
         uses: actions/deploy-pages@v4
